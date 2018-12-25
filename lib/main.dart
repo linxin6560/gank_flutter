@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gank_flutter/tab_page/fuli_list_page.dart';
-import 'package:gank_flutter/tab_page/article_list_page.dart';
+import 'package:gank_flutter/ui/tab_page/fuli_list_page.dart';
+import 'package:gank_flutter/ui/tab_page/article_list_page.dart';
 
 void main() => runApp(MyApp());
 

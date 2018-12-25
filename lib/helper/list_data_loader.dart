@@ -5,11 +5,9 @@ class ListDataLoader<T> {
     List<T> _dataList;
     LoadCallback<T> _callback;
     int _page = 1;
-    RefreshController refreshController;
+    RefreshController refreshController = RefreshController();
 
-    ListDataLoader(this._callback, this._dataList) {
-        refreshController = RefreshController();
-    }
+    ListDataLoader(this._callback, this._dataList);
 
     ///刷新，or，加载更多
     void refresh(bool up) async {
