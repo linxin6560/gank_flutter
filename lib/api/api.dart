@@ -13,20 +13,33 @@ Future<dynamic> getTabListData(String tabName, int page) async {
   }
 
   String url = "http://gank.io/api/data/$category/20/$page";
-  Response response = await get(url);
-  dynamic body = json.decode(response.body);
-  print('body->$body');
-  return body;
+  try {
+    Response response = await get(url);
+    dynamic body = json.decode(response.body);
+    print('body->$body');
+    return body;
+  } catch (e) {
+    print(e);
+  }
+  return null;
 }
 
 ///获取福利列表
 Future<List<FuliItem>> getFuliListData(String tabName, int page) async {
   dynamic body = await getTabListData(tabName, page);
-  return FuliItem.parseList(body);
+  if (body != null) {
+    return FuliItem.parseList(body);
+  } else {
+    return [];
+  }
 }
 
 ///获取文章列表
 Future<List<ArticleItem>> getArticleListData(String tabName, int page) async {
   dynamic body = await getTabListData(tabName, page);
-  return ArticleItem.parseList(body);
+  if (body != null) {
+    return ArticleItem.parseList(body);
+  } else {
+    return [];
+  }
 }
