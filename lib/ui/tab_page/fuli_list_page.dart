@@ -20,6 +20,11 @@ class _WelfareState extends State<WelfarePage> with AutomaticKeepAliveClientMixi
   List<FuliItem> _items = [];
   ListDataLoader<FuliItem> _dataLoader;
 
+
+  _WelfareState(){
+    print("new _WelfareState");
+  }
+
   @override
   void initState() {
     super.initState();
@@ -29,6 +34,7 @@ class _WelfareState extends State<WelfarePage> with AutomaticKeepAliveClientMixi
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return new Container(
       child: Padding(
         padding: EdgeInsets.all(5),

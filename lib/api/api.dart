@@ -16,7 +16,7 @@ Future<dynamic> getTabListData(String tabName, int page) async {
   try {
     Response response = await get(url);
     dynamic body = json.decode(response.body);
-    print('body->$body');
+//    print('body->$body');
     return body;
   } catch (e) {
     print(e);

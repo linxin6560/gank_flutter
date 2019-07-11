@@ -29,6 +29,7 @@ class _ArticleListState extends State<ArticleListPage> with AutomaticKeepAliveCl
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return new Container(
       child: Padding(
         padding: EdgeInsets.all(5),

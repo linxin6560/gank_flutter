@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gank_flutter/ui/tab_page/fuli_list_page.dart';
 import 'package:gank_flutter/ui/tab_page/article_list_page.dart';
+import 'package:gank_flutter/ui/tab_page/video_list_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,6 +40,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       Widget child;
       if (title == _tabTitles[0]) {
         child = WelfarePage(title);
+      } else if (title == _tabTitles[4]) {
+        child = VideoListPage(title);
       } else {
         child = ArticleListPage(title);
       }

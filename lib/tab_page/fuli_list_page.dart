@@ -29,6 +29,7 @@ class _WelfareState extends State<WelfarePage> with AutomaticKeepAliveClientMixi
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return new Container(
       child: Padding(
           padding: EdgeInsets.all(5),

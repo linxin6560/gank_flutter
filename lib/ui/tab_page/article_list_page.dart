@@ -30,49 +30,48 @@ class _ArticleListState extends State<ArticleListPage> with AutomaticKeepAliveCl
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: Padding(
-        padding: EdgeInsets.all(5),
-        child: SmartRefresher(
-          enablePullDown: false,
-          enablePullUp: true,
-          controller: _dataLoader.refreshController,
-          onRefresh: _dataLoader.refresh,
-          child: ListView.builder(
-              itemCount: _items.length,
-              itemBuilder: (BuildContext context, int index) {
-                ArticleItem item = _items[index];
-                String publishedAt = item.publishedAt.split("T")[0];
-                return GestureDetector(
-                    child: new Card(
-                      child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(item.desc),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  item.who,
-                                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                                ),
-                                Text(
-                                  publishedAt,
-                                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+    super.build(context);
+    return Padding(
+      padding: EdgeInsets.all(5),
+      child: SmartRefresher(
+        enablePullDown: false,
+        enablePullUp: true,
+        controller: _dataLoader.refreshController,
+        onRefresh: _dataLoader.refresh,
+        child: ListView.builder(
+            itemCount: _items.length,
+            itemBuilder: (BuildContext context, int index) {
+              ArticleItem item = _items[index];
+              String publishedAt = item.publishedAt.split("T")[0];
+              return GestureDetector(
+                  child: new Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(item.desc),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                item.who,
+                                style: TextStyle(color: Colors.grey, fontSize: 12),
+                              ),
+                              Text(
+                                publishedAt,
+                                style: TextStyle(color: Colors.grey, fontSize: 12),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleDetailPage(item.who, item.url)));
-                    });
-              }),
-        ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleDetailPage(item.who, item.url)));
+                  });
+            }),
       ),
     );
   }

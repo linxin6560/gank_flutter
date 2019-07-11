@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter/material.dart';
 
@@ -21,17 +23,25 @@ class ListDataLoader<T> {
 
   ///加载数据
   void loadData() async {
+    print("loadData $_callback");
     List<T> list = await _callback.request(_page);
     print("loadData size:${list.length}");
     _callback.updateState(() {
-      try {
-        if (_page == 1) {
+      if (_page == 1) {
+        try {
           _dataList.clear();
+          _dataList.addAll(list);
+          refreshController.refreshCompleted();
+        } catch (e) {
+          refreshController.refreshFailed();
         }
-        _dataList.addAll(list);
-        refreshController.sendBack(_page == 1, RefreshStatus.idle);
-      } catch (e) {
-        refreshController.sendBack(_page == 1, RefreshStatus.failed);
+      } else {
+        try {
+          _dataList.addAll(list);
+          refreshController.loadComplete();
+        } catch (e) {
+          refreshController.loadFailed();
+        }
       }
     });
   }
