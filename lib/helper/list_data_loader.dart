@@ -12,12 +12,8 @@ class ListDataLoader<T> {
   ListDataLoader(this._callback, this._dataList);
 
   ///刷新，or，加载更多
-  void refresh(bool up) async {
-    if (up) {
-      _page = 1;
-    } else {
-      _page++;
-    }
+  void refresh() async {
+    _page = 1;
     loadData();
   }
 
